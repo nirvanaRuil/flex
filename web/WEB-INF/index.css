@@ -16,7 +16,6 @@ body{
     background: #f2f2f2;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
-    height: 2000px;
 }
 .search-index{
     position: fixed;
