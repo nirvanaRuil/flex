@@ -1,0 +1,286 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+body{
+    max-width: 540px;
+    min-width: 320px;
+    margin: 0 auto;
+    color: #2b2b2b;
+    background: #f2f2f2;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    height: 2000px;
+}
+.search-index{
+    position: fixed;
+    /*固定定位,吸顶灯效果*/
+    top: 0;
+    left:50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+/*    固定盒子应该有宽度*/
+    width: 100%;
+    height: 44px;
+    max-width: 540px;
+    min-width: 320px;
+    display: flex;
+    background-color: #f6f6f6;
+    border-bottom: #acb3c1 1px solid;
+}
+/*是指在页面中间,高度定死,最大宽度&最小宽度定死*/
+
+.search{
+    flex: 1;
+    height: 26px;
+    border: 1px solid #acb3c1;
+    margin: 8px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    box-shadow: #acb3c1 2px 2px 4px;
+    position: relative;
+}
+.search:before{
+    content: '';
+    /*display: block;  加了绝对定位的盒子就不用block了*/
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: pink;
+    /*margin: 3px;*/
+}
+.search p{
+    padding-left: 25px;
+    line-height: 26px;
+    color: #acb3c1;
+}
+.user{
+    width: 44px;
+    height: 44px;
+    background-color: #cad122;
+    color: palevioletred;
+    text-align: center;
+    /*line-height: 44px;*/
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+}
+.user::before{
+    content: '';
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-color: pink;
+    margin: 3px auto;
+}
+
+
+.focus{
+    padding-top: 44px;
+}
+/*由于search是固定定位,所以会盖住img的一部分,此时给focus设置padding-top和search相同的高度就可以了*/
+.focus img{
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+
+
+.classify{
+    height: 64px;
+    background-color: #fff;
+    margin: 3px 4px;
+    border-radius: 5px;
+    display: flex;
+}
+.classify li{
+    flex: 1;
+}
+.classify a{
+    color: #2b2b2b;
+    display: flex;
+    flex-direction: column;
+    /*设置y轴为主轴*/
+    align-items: center;
+    font-size: 12px;
+}
+.classify-icon{
+    width: 32px;
+    height: 32px;
+    background-color: pink;
+    margin: 5px;
+}
+
+
+.nav{
+    border-radius: 10px;
+    overflow: hidden;
+    /*因为在nav中还有div,这个div可没有设置圆角,所以底层的圆角被上层覆盖啦,就要加overflow隐藏掉多余的部分*/
+    margin: 0 4px 3px;
+    background-color: #fff;
+}
+.nav-common{
+    height: 88px;
+    display: flex;
+}
+.nav-common:nth-child(1){
+    background:-webkit-linear-gradient(left,#FF6E3E,#F9A039) ;
+/*    背景线性渐变色,必须要加私有前缀  默认方向是top-bottom*/
+}
+.nav-common:nth-child(2){
+    margin: 3px 0;
+    background:-webkit-linear-gradient(left,#518CF8,#50AFFC) ;
+}
+.nav-common:nth-child(3){
+    background:-webkit-linear-gradient(left,#28B1B3,#5AC462) ;
+}
+.nav-items{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav-items:nth-child(-n+2){
+/*    n+2是从第二个开始,-n+2是前两个元素;以此类推,-n+3是前三个元素*/
+    border-right: 1px solid white;
+/*    因为用的是css3的盒子模型,所以border有被算进去,所以加了边框之后不会被挤下去*/
+}
+.nav-items a{
+    flex: 1;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 1px 1px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 44px;
+}
+.nav-items a:nth-child(1){
+    border-bottom: 1px solid white;
+}
+.nav-items:nth-child(1) a {
+    border: 0;
+}    /*去掉第一个nav-items的底边边框,因为第一个a有下边框,而第一个nav-items只有一个a*/
+
+
+.subnav-entry{
+    border-radius: 8px;
+    display: flex;
+    background-color: white;
+    margin: 0 4px;
+    flex-wrap: wrap;
+/*    总的父亲不用设定高度,被自然撑开,每个部分都一样不用设置*/
+}
+.subnav-entry li{
+    flex: 20%;
+/*因为flex默认不换行,所以需要换行时需要和flex-wrap配合使用,同时flex用百分比表示*/
+/*表示每个子项目占父级宽度的百分比!*/
+}
+.subnav-entry a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #2b2b2b;
+    font-size: 14px;
+    text-shadow: 1px 1px rgba(124,123,124,0.2);
+    text-align: center;
+}
+.subnav-entry-icon{
+    width: 28px;
+    height: 28px;
+    background-color: palevioletred;
+    margin-top: 4px;
+}
+
+
+.sales-box{
+    border-top: 1px solid #bbb;
+    background-color: #ffffff;
+    margin: 4px;
+}
+.sales-hd{
+    height: 44px;
+    border-bottom: 1px solid #cccccc;
+    position: relative;
+}
+.sales-hd h2{
+    text-indent: -999px;
+    /*把文字隐藏出去*/
+    overflow: hidden;
+    position: relative;
+}
+.sales-hd h2::after{
+    content: '';
+    height: 15px;
+    width: 79px;
+    background-color: palevioletred;
+    position: absolute;
+    top: 13px;
+    left: 10px;
+}
+.sales-hd a{
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    color: #fff;
+    background: -webkit-linear-gradient(left,#FB6A5B,#F77DAA);
+    padding: 5px 20px 5px 5px;
+    border-radius: 16px;
+}
+.sales-hd a::after{
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 9px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(45deg);
+}
+
+
+.row{
+    display: flex;
+}
+.row a{
+    flex: 1;
+    height: 50px;
+    width: 100%;
+    background-color: palevioletred;
+    border-bottom: 1px solid #eee;
+}
+.row a:nth-child(1){
+    border-right: 1px solid #eee;
+/*因为没有图片,将就一下哈,加个border看出来效果就行*/
+}
+
+
+.foot{
+    display: flex;
+    /*flex-direction: column;*/
+    height: 44px;
+    margin-top: 5px;
+    border-bottom: 1px solid #cccccc;
+}
+.foot a{
+    color: #2b2b2b;
+    flex: 1;
+    text-align: center;
+    text-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+.foot a:before{
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: pink;
+    margin: 2px auto;
+}

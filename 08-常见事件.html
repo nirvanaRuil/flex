@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        let username = document.getElementById("username");
+        console.log(username)
+        username.onmousedown = function (event) {
+            console.log(event.button)
+            // 左键0 滚轮1 右键2
+        }
+        username.onkeydown = function (event) {
+            console.log(event.keyCode)
+            // 按键的编号  回车是13
+        }
+        username.onchange = function (event) {
+            console.log("文本内容改变了...")
+            // 作用于下拉列表
+        }
+        document.getElementById("city").onchange = function (event) {
+            console.log(document.getElementById("city").value)
+            //下拉列表选择改变
+
+        }
+        document.getElementById("btn").onclick = function () {
+            console.log("提交了")
+            document.getElementById("form").submit()
+            //todo:这有问题
+        }
+    }
+
+</script>
+<form action="#" id="form" name="form">
+
+<input type="text" id="username" name="username">
+<select name="" id="city" >
+    <option  >请选择</option>
+    <option value="北京">北京</option>
+    <option value="上海">上海</option>
+    <option value="深圳">深圳</option>
+</select>
+    <input type="button" value="提交" id="btn">
+</form>
+<script>
+
+    let username = document.getElementById("username");
+    username.onblur = function () {
+        console.log("失去焦点了..."+new Date())
+
+    }
+</script>
+</body>
+</html>

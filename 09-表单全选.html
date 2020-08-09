@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMLDOM</title>
+    <style>
+        *{
+            text-align: center;
+            margin: auto;
+        }
+        th,td{
+            text-align: center;
+            border: 1px solid;
+        }
+        input {
+            margin-right: 15px;
+        }
+        .out{
+            background-color: #fff;
+        }
+        .over{
+            background-color: skyblue;
+        }
+    </style>
+    <script>
+        window.onload =function () {
+            document.getElementById("allSelect").onclick = function () {
+                let cks = document.getElementsByClassName("ck");
+                for (let i = 0; i <cks.length; i++) {
+                    cks[i].checked = true
+                }
+
+            }
+            document.getElementById("noSelect").onclick = function () {
+                let cks = document.getElementsByClassName("ck");
+                for (let i = 0; i <cks.length; i++) {
+                    cks[i].checked = false
+                }
+
+            }
+            document.getElementById("rev").onclick = function () {
+                let cks = document.getElementsByClassName("ck");
+                for (let i = 0; i <cks.length; i++) {
+                    cks[i].checked = !cks[i].checked
+                }
+
+            }
+            document.getElementById("first").onclick = function () {
+                console.log("我真的执行了")
+                console.log( document.getElementById("first").checked)
+                let cks = document.getElementsByClassName("ck");
+                for (let i = 0; i <cks.length; i++) {
+                    //todo 这也有问题 动态增加表之后 这个点击就失效了
+                    cks[i].checked =  document.getElementById("first").checked
+                    // cks[i].checked =  this.checked
+                    //this 指代事件源对象, 两种写法等价
+                }
+
+            }
+            let trs = document.getElementsByTagName("tr");
+            for (let i = 0; i < trs.length; i++) {
+                trs[i].onmouseover = function () {
+                    console.log("进来了")
+                    this.className = "over"
+                }
+                trs[i].onmouseout = function () {
+                    console.log("出去了")
+                    this.className = "out"
+                }
+                //todo 动态添加表之后  这个功能也异常
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+
+<br><br>
+id:<input type="text" id="id">
+姓名:<input type="text" id="name">
+性别:<input type="text" id="gender">
+<input type="button" id="btn" value="add"><br><br>
+<input type="button" id="allSelect" value="allSelect">
+<input type="button" id="rev" value="rev">
+<input type="button" id="noSelect" value="noSelect">
+
+<table  >
+    <caption>员工信息表</caption>
+    <tr>
+        <th><input type="checkbox" id="first"></th>
+        <th>id</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>操作</th>
+
+    </tr>
+</table>
+<br>
+<div id="div1">
+    div
+</div>
+
+<script>
+    document.getElementById("btn").onclick =function () {
+        let id = document.getElementById("id").value;
+        let name = document.getElementById("name").value;
+        let gender = document.getElementById("gender").value;
+
+        let tableElement = document.getElementsByTagName("table")[0];
+        tableElement.innerHTML +=
+            "<tr>\n" +
+            "<td><input type=\"checkbox\" class='ck'></td>\n"+
+            "        <td>"+id+"</td>\n" +
+            "        <td>"+name+"</td>\n" +
+            "        <td>"+gender+"</td>\n" +
+            "        <td><a href=\"#\" onclick=\"delTr(this)\">删除</a></td>\n" +
+            "    </tr>"
+    }
+
+    /*
+    获取
+     */
+    let div1 = document.getElementById("div1");
+    let innerHTML = div1.innerHTML;
+    console.log(innerHTML)
+    // div1.innerHTML = "<input type='text'>" //替换
+    div1.innerHTML+= "<input type='text'>" //追加
+
+    function delTr(obj) {
+        let table = obj.parentNode.parentNode.parentNode.parentNode;
+        let tr =  obj.parentNode.parentNode.parentNode
+        table.removeChild(tr)
+    }
+
+
+
+</script>
+</body>
+</html>

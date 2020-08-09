@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时跳转</title>
+    <style>
+        *{
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+        span{
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<p><span id="time">5</span>秒后,跳转到B站</p>
+</body>
+<script>
+    let count = 5;
+    function showTime(){
+        count--;
+        let time = document.getElementById("time")
+        time.innerHTML = count ;
+        if (count == 0){
+            location.href = "http://www.bilibili.tv"
+        }
+    }
+    setInterval(showTime,1000);
+</script>
+<!--self.location.href="url"; //1.仅在本页面打开url-->
+<!--window.location.href="url"; //2.当前页面打开URL页面-->
+<!--this.location.href="url"; //3.用法和self.location.href一致-->
+<!--location.href="url"; //4.当前页面打开URL页面-->
+<!--parent.location.href="url"; //5.在父窗口打开此url窗口-->
+<!--top.location.href="url";//6.在顶层页面打开url（跳出框架）-->
+</html>
